@@ -1,0 +1,30 @@
+<table class="table table-striped">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>City</td>
+            <td><a href="#!/new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </td>
+        </tr>
+        <tr ng-repeat="profile in profiles">
+            <td>{{profile.fName}}</td>
+            <td>{{profile.lName}}</td>
+            <td>{{profile.age}}</td>
+            <td>{{profile.city}}</td>
+            <td><a href="#!/edit/{{$index}}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <!-- <form ng-submit="addProfile(newProfile)">
+        <input type="text" placeholder="First Name" ng-model="newProfile.fName" />
+        <input type="text" placeholder="Last Name" ng-model="newProfile.lName" />
+        <input type="text" placeholder="Age" ng-model="newProfile.age" />
+        <input type="text" placeholder="City" ng-model="newProfile.city" />
+        <input type="submit">
+    </form>  -->

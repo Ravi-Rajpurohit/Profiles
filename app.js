@@ -1,6 +1,58 @@
-angular.module('profile', [
+angular.module("profile", ["ngRoute"]).
+    config(function ($routeProvider) {
 
-])
+        // $locationProvider.html5Mode(true);
+        $routeProvider.when("/", {
+            "templateUrl": "/profile/list.html",
+            "controller": "ProfileCtrl"
+        }).
+            when("/new", {
+                "templateUrl": "/profile/new.html",
+                "controller": "NewCtrl"
+            }).
+            when("/edit/:id", {
+                "templateUrl": "/profile/edit.html",
+                "controller": "EditCtrl"
+            })
+
+    })
+
+
+angular.module('profile')
+    .controller('NewCtrl', function ($scope, ProfileService, $location) {
+        $scope.profiles = ProfileService.getProfile();
+        $scope.addProfile = addProfile;
+
+        function addProfile(newProfile) {
+            ProfileService.addProfile(newProfile);
+            $location.path("/");
+        }
+
+
+    })
+
+
+angular.module('profile')
+    .controller('EditCtrl', function ($scope,ProfileService, $location, $routeParams) {
+
+       
+       console.log("in controller")
+        
+        $scope.profiles = ProfileService.getProfile();
+        $scope.addProfile = addProfile;
+$scope.newProfile = $scope.profiles[$routeParams.id];
+
+        function addProfile(newProfile) {
+            // ProfileService.addProfile(newProfile);
+             $location.path("/");
+        }
+
+
+    })
+
+
+
+angular.module('profile')
     .controller('ProfileCtrl', function ($scope, ProfileService) {
         $scope.profiles = ProfileService.getProfile();
         $scope.addProfile = addProfile;
@@ -32,3 +84,6 @@ angular.module('profile').service('ProfileService', function () {
 
     this.addProfile = addProfile;
 })
+
+
+
